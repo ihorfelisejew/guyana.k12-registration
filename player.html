@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Player Dashboard</title>
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<!-- <link rel="stylesheet" href="css/chat.css"> -->
+	<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+	<script src="js/jquery.form.min.js"></script>
+
+	<script src="js/utils.js"></script>
+	<script src="js/player.js"></script>
+
+
+	<link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+
+<div id="header"></div>
+<br />
+<!-- Team Members -->
+
+<div class="row page-heading">
+	<div class="container">
+		<h1 >Player Dashboard</h1>
+	</div>
+</div>
+
+<div class="main-section" >
+
+<div class="container"  >
+
+
+   
+	<div class="profile-notifications section-gap">
+		<div class="my-profile section" >
+			<div class="pic">
+				<img alt="User Pic" id="dp" src="https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png" >
+			</div>
+			
+			<div class="inside-container" >
+				<div >
+					<h3 >
+						<span id="name"></span>
+						<span id="last_name"></span>
+					
+						<span id="team_captain">Team Captain</span>
+					</h3>
+					<form onsubmit="handleuploadSubmit(event)" style="width: unset; margin: unset;" action="server/processupload.php" method="post" enctype="multipart/form-data" id="MyUploadForm">
+						<label class="" style="cursor: pointer;">
+							<input name="FileInput" id="FileInput" type="file" style="display: none;"/>
+							<input	name="user" id="user" type="hidden" value="0" /> 
+
+							<button type="submit" id="upload-trigger" class="">
+								Edit My Profile  <span class="glyphicon glyphicon-open"></span>
+							</button>
+						</label>
+						<img src="images/ajax-loader.gif" id="loading-img" style="display: none;" alt="Please Wait" />
+					</form>
+					
+					<script type="text/javascript">
+						document.getElementById('upload-trigger').onclick = function() {
+							document.getElementById('FileInput').click();
+						};
+					
+						document.getElementById('FileInput').onchange = function() {
+								document.getElementById('upload-trigger').click();
+								document.getElementById('loading-img').style.display = 'block';
+							
+							
+						};
+
+						
+					</script>
+				</div>
+				<div>
+					<strong>Payment Status: </strong>
+					<span id="totaldue"></span>
+				</div>
+				<div>
+					<strong>Location: </strong>
+					<span id="org_name"></span>
+				</div>
+				<div>
+					<strong>Role: </strong>
+					<span id="role"></span>
+				</div>
+				<div>
+					<strong>Coach: </strong>
+					<span id="coach_id"></span>
+				</div>
+			</div>
+			
+		
+		</div>
+		
+
+		<div class="my-notifications section" >
+			<div >
+				<h3 >My Notifications</h3>
+			</div>
+			
+			<div class="notification-container">
+				<div class="notification">
+					<span>Submission Deadline in 24hrs!</span>
+					<p>Your team hasn't uploaded a submission for this weeks challenge. Submit before the deadline!</p>
+				</div>
+				<div class="notification">
+					<span>Submission Deadline in 48hrs!</span>
+					<p>Your team hasn't uploaded a submission for this weeks challenge. Submit before the deadline!</p>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<h3 class="section-name section-gap">My Team</h3>
+	<div class="team-section section">
+		<div class="inside-container">
+			<span>My Team</span>
+			<span id="team_name"></span>
+		</div>
+		<div class="inside-container">
+			<span>Average Challenge Score</span>
+			<span id="average_team_score"></span>
+		</div>
+		<div class="inside-container">
+			<span>Total Points</span>
+			<span id="team_total_points"></span>
+		</div>
+		<div id="team_members" class="inside-container">
+			<span>My Team Members</span>
+			
+		</div>
+		<div>
+			<div data-toggle="modal"
+		data-target="#Rankings" onclick="loadRankings()" class="inside-container">
+			<span>View Rankings</span>
+		</div>
+			<div data-toggle="modal"
+		data-target="#BoostTeam"  class="inside-container">
+			<span>Boost Score</span>
+		</div>
+		</div>
+		
+	</div>
+
+
+	<h3 class="section-name section-gap">Challenge History</h3>
+	
+	<div  class="challenge-history section">
+		<div class="column-names inside-container">
+			<div>
+				<span>Challenge Name</span>
+			</div>
+			<div>
+				<span>Dates</span>
+			</div>
+			<div>
+				<span>Total Score</span>
+			</div>
+			<div>
+				<span>Submission</span>
+			</div>
+		</div>
+		<div id="chng-list"></div>
+	</div>
+	<!-- <div  class="match-history section">
+		<div class="column-names inside-container">
+			<div>
+				<span>Round #</span>
+			</div>
+			<div>
+				<span>Team 1</span>
+			</div>
+			<div>
+				<span>Team 2</span>
+			</div>
+			<div>
+				<span>Team 1 Score</span>
+			</div>
+			<div>
+				<span>Team 2 Score</span>
+			</div>
+			<div>
+				<span>Dates</span>
+			</div>
+			<div>
+				<span>Winner</span>
+			</div>
+		</div>
+		<div id="chng-list"></div>
+	</div> -->
+
+	<div class="learning-space section section-gap">
+		<div class="inside-container">
+			<div onclick="$('.learning-space .lessons').toggleClass('d-flex')" class="container-collapsable">
+				<h3 class="section-name">Learning Space</h3>
+				<svg width="35" height="22" viewBox="0 0 35 22" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<rect width="34.9999" height="21.2295" fill="url(#pattern0)"/>
+					<defs>
+					<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+					<use xlink:href="#image0_151_375" transform="scale(0.00182149 0.003003)"/>
+					</pattern>
+					<image id="image0_151_375" width="549" height="333" xlink:href="data:image/png;base64,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"/>
+					</defs>
+				</svg>
+			</div>
+			<div class="lessons">
+				<div class="select-lesson ">
+					<select class="new-select" name="select_lesson form-control" id="select_lesson">
+						
+					</select>
+				</div>
+				<div class="panel panel-default" id="task-table_scroll">
+
+					<table class="table table-hover table-striped" id="task-table">
+						<thead>
+						<tr>	
+							<th style="background:#4BADC8">#</th>
+							<th style="background:#4BADC8">Name</th>
+							<th style="background:#4BADC8">Link</th>
+							<th style="background:#4BADC8">Status</th>
+							<th style="background:#4BADC8">Update</th>
+						</tr>
+						</thead>
+						<tbody id="lessionsList">
+	
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<h3 class="section-name section-gap" >Current Challenge Details</h3>
+	<div class="current-challenge inside-container">
+		<div class="panel panel-default">
+
+			<div id="challenge-txt">
+				
+
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+
+
+
+<div class="container" style="margin-top:100px; display: none;">
+	<div class="col-lg-12">
+		<h2>Player Module</h2>
+
+	</div>
+
+
+	<div id="main">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-7" id="padding_rmv">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  toppad">
+
+
+						<div class="panel panel-info">
+							<div class="panel-body" id="remove_padding_panel">
+								<div class="row">
+									<div class="col-md-3 col-lg-3 " align="center">
+										<!-- <img alt="User Pic" id="dp"
+											 src="https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png"
+											 class="img-thumbnail img-responsive"> -->
+									</div>
+
+									<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+									<div class=" col-md-9 col-lg-9 ">
+										<h3 class="panel-title login_name"><b id="name">
+                      </b> <b id="last_name"></b></h3>
+										<div class="profile_sidebar">
+											<table class="table table-user-information">
+												<tbody>
+												<tr>
+													<td><b>Total Due:</b></td>
+													<td id="totaldue"></td>
+												</tr>
+												<tr>
+													<td><b>Band:</b></td>
+													<td id="player_band"></td>
+												</tr>
+												<tr>
+													<td><b>Email:</b></td>
+													<td id="email"></td>
+												</tr>
+												<tr>
+												  <td>
+													<b>Organisation Name:
+													</b>
+												  </td>
+												  <td id="org_name">
+												  </td>
+												</tr>
+												<tr>
+													<td><b>Role:</b></td>
+													<td id="role"></td>
+												</tr>
+												<tr>
+													<td><b>League</b></td>
+													<td id="league"></td>
+												</tr>
+												<tr>
+													<td><b>Coach</b></td>
+													<td id="coach_id"></td>
+												</tr>
+												<tr>
+
+
+
+												</tr>
+
+												</tbody>
+											</table>
+										</div>
+										<!-- <form action="server/processupload.php" method="post"
+											  enctype="multipart/form-data" id="MyUploadForm">
+											<label class="custom-file-upload">
+												<input name="FileInput" id="FileInput" type="file"/>   Choose File <span class="glyphicon glyphicon-picture" style="color:#FFF"></span>
+											</label>
+											<input	name="user" id="user" type="hidden" value="0" /> 
+
+											<button type="submit" id="submit-btn" class="btn btn-warning">
+												Upload Picture <span class="glyphicon glyphicon-open"></span>
+											</button>
+											<img src="images/ajax-loader.gif"
+												 id="loading-img" style="display: none;" alt="Please Wait" />
+										</form> -->
+
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="panel panel-default" id="remove_panel_background">
+							<div class="panel-body" id="intro_video">
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="panel panel-default">
+						<div class="panel-body" style="padding: 0px;">
+							<div class="chat" id="chat" style="overflow: hidden;">
+								<div class="stream" id="cstream" style="width: 90%;margin-top: 0px;">
+									<div class="row bootstrap snippets">
+										<div class="">
+											<!-- DIRECT CHAT SUCCESS -->
+											<div class="box box-success direct-chat direct-chat-success">
+												<div class="box-header with-border">
+													<h3 class="box-title">MessageBoard
+													</h3>
+													<div class="box-tools pull-right">
+													</div>
+													<!-- /.box-header -->
+													<div class="box-body">
+														<!-- Conversations are loaded here -->
+														<div class="direct-chat-messages" id="direct-chat-messages_div">
+															<!-- Message. Default to the left -->
+
+															<!--  <div class="direct-chat-msg">
+                                                               <div class="direct-chat-info clearfix">
+                                                                 <span class="direct-chat-name pull-left">Admin
+                                                                 </span>
+                                                               </div>
+                                                               <img class="direct-chat-img" src="http://bootdey.com/img/Content/user_1.jpg" alt="Message User Image">
+                                                               <div class="direct-chat-text" style="width:55%">
+                                                                 Hi
+                                                               </div>
+                                                             </div> -->
+
+															<!-- <div id="fetch_msg">
+                                                              <div class="direct-chat-msg right" style="width: 55%;float: right;">
+                                                                <div class="direct-chat-info clearfix">
+                                                                  <span class="direct-chat-name pull-right">prasad bhanarkar
+                                                                  </span>
+                                                                </div>
+                                                                <img class="direct-chat-img" src="http://buira.org/assets/images/shared/default-profile.png" alt="Message User Image">
+                                                                <div class="direct-chat-text">
+                                                                  Hello
+                                                                </div>
+                                                              </div>
+                                                            </div>  -->
+
+														</div>
+														<!--/.direct-chat-messages-->
+														<!-- Contacts are loaded here -->
+														<div class="direct-chat-contacts">
+															<ul class="contacts-list">
+																<li>
+																	<a href="#">
+																		<img class="contacts-list-img" src="http://bootdey.com/img/Content/user_1.jpg">
+																		<div class="contacts-list-info">
+                                        <span class="contacts-list-name">
+                                          Count Dracula
+                                          <small class="contacts-list-date pull-right">2/28/2015
+                                          </small>
+                                        </span>
+																			<span class="contacts-list-msg">How have you been? I was...
+                                        </span>
+																		</div>
+																		<!-- /.contacts-list-info -->
+																	</a>
+																</li>
+																<!-- End Contact Item -->
+															</ul>
+															<!-- /.contatcts-list -->
+														</div>
+														<!-- /.direct-chat-pane -->
+													</div>
+													<!-- /.box-body -->
+												</div>
+												<!--/.direct-chat -->
+											</div>
+											<!-- chat box end -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="msg">
+								<input name="msg" id="msg-min" onkeyup="" style="width: 80%;height: 35px;margin-top: 0px;" onkeypress="sendMsg(event);" />
+								<input type="hidden" name="uid" id="chat-user" >
+								<input type="hidden" name="tid" id="chat-team" >
+								<input type="button" value="Send" id="sb-mt" style="margin-top: -6px;" onclick="sendMessage();">
+							</div>
+							<div id="dataHelper" last-id=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+		<div style="background:#fff;width:100%;margin-bottom: 20px;color: #f79810;font-size: 14px;padding: 5px 0px;">
+			<marquee id="newstickermarq"></marquee>
+		</div>
+	  </div>
+		<div class="col-md-12">
+
+			<button class="btn btn-info btn-lg" data-toggle="modal"
+					data-target="#addVideos" id="showhidevideobtn" onclick="loadLinks(this)">Add Submission</button>
+
+			<button class="btn btn-info btn-lg" onclick="getPlayers()" data-toggle="modal"
+					data-target="#playersPP">Teammates</button>
+					
+			<button class="btn btn-info btn-lg" onclick="getChallenges()" data-toggle="modal"
+					data-target="#challenges">Challenge History</button>
+			<button class="btn btn-info btn-lg" onclick="getVideos()" data-toggle="modal"
+					data-target="#videos">Video History</button>
+
+			<button class="btn btn-info btn-lg" onclick="getTeamRanking()" data-toggle="modal"
+					data-target="#standingPP">League Standing</button>
+			<button id="changeStatus-btn"  data-toggle="modal" data-target="#loadWinners"
+					class="btn btn-lg btn-info  signup-btn" onclick="showWinnersR1()" type="button">View Winners
+			</button>
+			<a class="btn btn-info btn-lg" href="player2.html">Round 2</a>
+
+			<h3 style="padding:10px 0"><strong>Teams</strong></h3>
+			<div class="panel panel-default" id="task-table_scroll">
+
+				<table class="table table-hover table-striped" id="task-table">
+					<thead>
+					<tr>
+						<th style="background:#4BADC8">#</th>
+						<th style="background:#4BADC8">Name</th>
+						<th style="background:#4BADC8">Coach</th>
+						<th style="background:#4BADC8">--</th>
+						<th style="background:#4BADC8">--</th>
+						<th style="background:#4BADC8">Team Average Score</th>
+						<th style="background:#4BADC8">--</th>
+					</tr>
+					</thead>
+					<tbody id="coachList">
+
+					</tbody>
+				</table>
+			</div>
+			
+			<h3 style="padding:10px 0"><strong>Lessons</strong></h3>
+			<div class="panel panel-default" id="task-table_scroll">
+
+				<table class="table table-hover table-striped" id="task-table">
+					<thead>
+					<tr>
+						<th style="background:#4BADC8">#</th>
+						<th style="background:#4BADC8">Name</th>
+						<th style="background:#4BADC8">Link</th>
+						<th style="background:#4BADC8">Status</th>
+						<th style="background:#4BADC8">Update</th>
+					</tr>
+					</thead>
+					<tbody id="lessionsList">
+
+					</tbody>
+				</table>
+			</div>
+			
+
+			<h3 style="padding:10px 0"><strong>Challenge</strong></h3>
+			<div class="panel panel-default">
+
+				<div id="challenge-txt">
+					
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade" id="submission-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="background-color: #fff;">
+			<div class="top-submission-modal">
+				<div class="withbutton">
+					<div>
+						<strong>CHALLENGE: </strong>
+						<span id="challenge-name">Solar Energy Connection</span>
+					</div>
+					
+					<button type="button"  data-dismiss="modal">Close</button>
+				</div>
+				<div>
+					<strong>START DATE: </strong>
+					<span id="challenge-start-date" >10.07.2024</span>
+				</div>
+				<div>
+					<strong>TUTORIAL LINK: </strong>
+					<span id="challenge-tutorial-link"><a href="https://stemguyana.com/lessons/Lesson_1B.pdf">https://stemguyana.com/lessons/Lesson_1B.pdf</a></span>
+
+				</div>
+				<div>
+					<strong >DESCRIPTION: </strong> 
+					<p id="challenge-description">Welcome to the Robo-Race Extravaganza, where speed meets innovation! In this thrilling challenge, teams will design and program autonomous robots to navigate through an obstacle-laden race track as quickly as possible. Creativity, precision, and teamwork are key, as participants must not only optimize their robot's speed but also ensure its ability to overcome hurdles and adapt to unexpected twists on the course</p> 	
+
+				</div>
+				
+			</div>
+			<div class="middle-submission-modal">
+				<strong>SUBMISSION: </strong>
+				<iframe id="submission-video" width="149" height="150" src=""></iframe>
+			</div>
+			<hr>
+			<div class="bottom-submission-modal" id="submission-modal-rating-section">
+				<div>
+					<span class="score-cat">Total Score: </span>
+					<span id="total-rating"></span>
+				</div>
+				<div>
+					<span class="score-cat">Artisctic: </span>
+					<span id="artistic-rating"></span>
+				</div>
+				<div>
+					<span class="score-cat">Creativity: </span>
+					<span id="creativity-rating"></span>
+				</div>
+				<div>
+					<span class="score-cat">Logic: </span>
+					<span id="logic-rating"></span>
+				</div>
+				<div>
+					<span class="score-cat">Problem Solved: </span>
+					<span id="problem-solved-rating"></span>
+				</div>
+				<div>
+					<span class="score-cat">Feedback: </span>
+					<p>Your robot's design demonstrated a thoughtful balance between speed and maneuverability, which was particularly evident in how efficiently it navigated the sharp turns on the course. However, there's room for improvement in the obstacle detection algorithm, as the robot hesitated slightly at the higher hurdles.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="Rankings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="background-color: #fff;">
+			<div class="top-rankings-modal">
+				<div class="withbutton">
+					<div>
+						<h3>Competition Rankings</h3>
+					</div>
+					
+					<button type="button"  data-dismiss="modal">Close</button>
+				</div>
+				
+				
+			</div>
+			<div class="middle-rankings-modal">
+				<div id ="competition-container">
+					
+				</div>
+				<div class="ranking-options" >
+					<div>
+						<label for="rankingRoundSelect">Select Round:</label>
+						<select class="new-select" id="rankingRoundSelect" onchange="showRankingRound()">
+						  <option value="1">ROUND 1</option>
+						  <!-- More rounds -->
+						</select>
+					</div>
+					<div>
+						<span>Round Judge Date:</span>
+						<br>
+						<span id="round-ends-on"></span>
+					</div>
+				</div>
+			</div>
+			<div id="table-rankings-modal">
+				
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="BoostTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="background-color: #fff;">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">By Answer This Question boost Your Team Score</h4>
+			</div>
+			<form role="form" >
+			<div class="modal-body">				
+				<table id="teamquestion"></table>	
+				<div id="timerdiv">Time left = <span id="timer"></span></div>		
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" id="answerQuestionID" onclick="answerQuestion()" class="btn btn-primary">Save</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" id="myModalLabel">Create Team</h4>
+			</div>
+			<div class="modal-body">
+				<form role="form" >
+
+					<label for="name">Team Name</label>
+					<div class="form-group">
+						<input id="teamName" name="name" type="text" class="form-control"
+							   required>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" onclick="saveTeam()" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="scorePP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" id="myModalLabel"> Team Average Score</h4>
+			</div>
+			<div class="modal-body">
+				<h1 id="score" class="label label-danger"></h1>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="playersPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" >Team Mates List</h4>
+			</div>
+			<div class="modal-body">
+
+				<table class="table table-hover" id="task-table">
+					<thead>
+					<tr>
+
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Team Name</th>
+						<th>Grade</th>
+					</tr>
+					</thead>
+					<tbody id="player-list-st">
+
+					</tbody>
+				</table>
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="videos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" >Players List</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-md-12">
+					<h2 class="page-header" id="links-title">History Videos</h2>
+
+					<div class="row"  id="historyLinks"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade modal-lg" style="width: 850px;" id="challenges" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:100%;">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" >Challenges</h4>
+			</div>
+			<div class="modal-body">
+				<table id="chng-list" class="table">
+
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="standingPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 800px;">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" id="myModalLabel"> League Standing</h4>
+			</div>
+			<div class="modal-body">
+
+				<table class="table table-hover" id="task-table">
+					<button type="button" class="btn btn-primary btn-xs" style="float:right" onclick="getTeamRanking()">By League</button>
+					&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-primary btn-xs" style="float:right" onclick="leagueTeamByOrg()">By Org</button>
+					<thead>
+					<tr>
+
+						<th>Name</th>
+						<th>Total score</th>
+						<th>Coach Name</th>
+						<th>NDC/Muni</th>
+						<th>Region</th>
+						<th>Org Name</th>
+					</tr>
+					</thead>
+					<tbody id="standings">
+
+					</tbody>
+				</table>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="addPlayer" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" id="addPlayer"> Players</h4>
+			</div>
+			<div class="modal-body">
+				<ul id="players-list">
+
+				</ul>
+				<form role="form" >
+
+					<label for="name">Add New Players</label>
+					<div class="form-group">
+						<select id="dd-players" name="month" class="form-control input-lg">
+
+						</select>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" onclick="addPlayer()" id="addPlayerBtn" class="btn btn-primary">Add Player</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="addVideos" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" id="addPlayer"> Add Submission</h4>
+			</div>
+			<div class="modal-body">
+
+				<form role="form" >
+
+					<label for="name">Challenge</label>
+					<div class="form-group" id="current-challenge-in-submission">
+
+					</div>
+
+					<label for="name">Video URL</label>
+					<div class="form-group">
+						<input type="url" id="url" class="form-control " />
+					</div>
+
+					<label for="name">Video Title</label>
+					<div class="form-group">
+						<input type="text" id="videoTitle" class="form-control " />
+					</div>
+
+				</form>
+				<table id="video-list" style="display: none;" class="table">
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" onclick="addLink()" id="addLinkBtn" class="btn btn-primary">Upload</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--winner list POP UP -->
+<div class="modal fade" id="loadWinners" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title" > Winner list</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table">
+					<thead>
+					<tr>
+						<th>Team</th>
+						<th>Rating</th>
+						<th>Round</th>
+						<th>NDC/Muni</th>
+						<th>Region</th>
+						<th>Org Name</th>
+					</tr>
+					</thead>
+					<tbody id="winner-body">
+
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="footer"></div>
+<script>
+    function sendMsg(e) {
+        if(e.keyCode == 13){
+            sendMessage();
+        }
+    }
+</script>
+
+<style>
+.answerinputlabel{
+	font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.answerinput{
+	width: 100%;
+    border: 1px solid #c3c3c3; 
+    height: 35px;
+	text-transform: capitalize;
+}
+#direct-chat-messages_div{
+height:550px;
+}
+@media screen and (min-width: 799px) {
+.btn {
+    width: 22%;
+	}
+	button#submit-btn {
+    width: 47% !important;
+}
+	}
+@media screen and (max-width: 1199px) {
+	.navbar-head li {
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+}
+}
+
+@media screen and (max-width: 991px) {
+.nav>li>a {
+   
+    padding: 0px 6px !important;
+}
+div#remove_panel_background {
+    background: none;
+}
+div#intro_video {
+    background: none !important;
+}
+table#task-table {
+    width: 1200px;
+}
+div#task-table_scroll {
+    overflow-x: scroll;
+}
+div#challenge-txt table {
+    width: 1200px;
+}
+div#challenge-txt{
+    overflow-x: scroll;
+}
+#direct-chat-messages_div {
+    height: 225px;
+}
+div#chat {
+    height: 264px;
+}
+div#bs-example-navbar-collapse-1 ul li {
+    padding-top: 0px !important; 
+}
+
+
+
+}
+
+div#challenge-txt td{
+	padding: 0px 6px;
+}
+#team_captain{
+	display: none;
+	color: #751a29;
+}
+</style>
+</body>
+</html>

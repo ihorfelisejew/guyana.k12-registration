@@ -1,0 +1,125 @@
+<div class="content">
+<div id="bl1">
+
+<?php
+
+if(!isset($settings['80d'])){
+$query='INSERT INTO '.$dbss['prfx']."_settings VALUES('80d','1',1)";
+neutral_query($query);}
+
+if($dbss['type']!='mysqli' && $dbss['type']!='mysql'){print 'Your database is not MySQL...</div></div>';include 'admin/overal_footer.pxtm';die();}
+if(isset($_GET['utf8_ok'])){print '<script type="text/javascript">window.location.href=\'admin.php?q=update\';</script></div></div>';include 'admin/overal_footer.pxtm';die();}
+if(isset($settings['80d'])){print 'Database already converted...</div></div>';include 'admin/overal_footer.pxtm';die();}
+
+$sql=array();
+
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_name ban_name VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_name ban_name VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_name ban_name VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_ip ban_ip VARCHAR(15) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_ip ban_ip VARBINARY(15)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_ip ban_ip VARCHAR(15) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_reason ban_reason VARCHAR(255) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_reason ban_reason VARBINARY(255)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHANGE ban_reason ban_reason VARCHAR(255) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_ban CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE usr_name usr_name VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE ipaddr ipaddr VARCHAR(15) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE ipaddr ipaddr VARBINARY(15)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHANGE ipaddr ipaddr VARCHAR(15) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_iplog CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE from_name from_name VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE from_name from_name VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE from_name from_name VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE line_txt line_txt text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE line_txt line_txt blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHANGE line_txt line_txt text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_lines CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_name usr_name VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_ip usr_ip VARCHAR(15) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_ip usr_ip VARBINARY(15)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHANGE usr_ip usr_ip VARCHAR(15) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_online CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_srx p_srx text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_srx p_srx blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_srx p_srx text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_sry p_sry text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_sry p_sry blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_sry p_sry text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_src p_src text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_src p_src blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_src p_src text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_bgc p_bgc CHAR(6) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_bgc p_bgc BINARY(6)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE p_bgc p_bgc CHAR(6) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE usr_name usr_name VARCHAR(255) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE usr_name usr_name VARBINARY(255)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHANGE usr_name usr_name VARCHAR(255) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_paintings CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_id set_id VARCHAR(16) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_id set_id VARBINARY(16)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_id set_id VARCHAR(16) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_value set_value text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_value set_value blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHANGE set_value set_value text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_settings CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_style CHANGE value value text CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_style CHANGE value value blob';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_style CHANGE value value text CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_style CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_name usr_name VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_name usr_name VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_pass usr_pass CHAR(32) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_pass usr_pass BINARY(32)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_pass usr_pass CHAR(32) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_mail usr_mail VARCHAR(64) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_mail usr_mail VARBINARY(64)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_mail usr_mail VARCHAR(64) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_status usr_status VARCHAR(8) CHARACTER SET latin1';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_status usr_status VARBINARY(8)';
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHANGE usr_status usr_status VARCHAR(8) CHARACTER SET utf8';
+
+$sql[]='ALTER TABLE '.$dbss['prfx'].'_users CHARACTER SET utf8';
+// -----------------------------------------------------------------------------------------
+for($i=0;$i<count($sql);$i++){neutral_query($sql[$i]);}
+
+?>
+
+<h4>All successfully converted.</h4>
+<input type="button" style="font-weight:bold;padding:10pt;margin:10pt;float:right" value=" NEXT " onclick="window.location.href='admin.php?q=update'" />
+<br style="clear:both" />
+</div>
+</div>

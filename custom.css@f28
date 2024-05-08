@@ -1,0 +1,97 @@
+.navbar-inverse {
+    background-color: #f79810;
+    border-color: #f79810;
+	padding:15px 0px;
+	background-image: none !important;
+}
+
+.btn-block{
+	background-color: #f79810;
+    border-color: #f79810;
+	
+	
+}
+
+
+.btn{
+	
+}
+.btn-primary:focus, .btn-primary:hover {
+	
+}
+
+a{
+	color: #f79810;
+}
+
+.panel-info>.panel-heading {
+    color: #fff;
+    background-color: #4CADC9;
+    border-color: #f6e6d0;
+	background-image: none !important;
+	text-align:center;
+}
+
+.panel-default>.panel-heading{
+	background-color: #4CADC9;
+	background-image: none !important;
+	color: #fff;
+}
+
+.panel-body{
+	background-color:#F5F5F5;
+	background-image:none;
+}
+
+.page-header{
+	margin:0;
+	border:none;
+}
+
+.modal-content {
+	background-color:#F9EFE0;
+}
+
+
+.login_name{
+ background:#F69810;
+ padding:15px;
+}
+
+.profile_sidebar{
+ background:#FFF;	
+}
+
+.btn-warning{
+ background:#F69810;	
+}
+
+.navbar-head{
+ width: 100%;
+   left: 0;
+   text-align: center;
+   margin: auto;
+   	
+}
+.navbar-head li{
+  padding-left:15px;
+  margin-left:35px;	
+}
+.navbar-head li a{
+  color:#FFF !important;	
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+	background:#4BADC8;
+}
+
+footer{
+ background:#03F;	
+}

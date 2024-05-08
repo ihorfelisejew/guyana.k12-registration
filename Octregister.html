@@ -1,0 +1,767 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sports League</title>
+<meta name="viewport" content="width=1024">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link
+            href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+            rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"
+          media="all" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css"
+          media="all" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.session.js"></script>
+    <style>
+        form.form .row{
+            padding-top:10px;
+        }
+    </style>
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="images/concert-one.regular-1.png" /></a>
+        </div>
+
+    </div>
+</nav>
+<div style="margin-top: 81px;">
+
+    <a href="index.html"><img src="images/kv-youth-v1.jpg" /></a>
+</div>
+<div style="background:#eeeeee">
+    <div class="container" id="wrap" >
+
+
+        <div class="row">
+            <br/>
+            <legend>Sign Up</legend>
+        </div>
+        <div class="row">
+
+            <div class="col-md-8" style="background:#fff;padding:10px">
+                <div class="row">
+                    <div class="col-md-6" style="
+    padding: 0px 35px 0px 57px;
+">
+                        <form    class="form" role="form">
+
+                            <div class="row">
+                                <label>Region</label>
+                                <div>
+                                    <select id="dd-state" class="form-control input-lg" onchange="loadCounties()">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label>NDC or MUNI</label>
+                                <div>
+                                    <select id="dd-county" class="form-control input-lg">
+
+                                    </select>
+                                </div>
+                            </div>
+
+                           <!-- <div class="row">
+                                <input id="zip" type="text" name="zip" value=""
+                                       class="form-control input-lg" placeholder="Zip" />
+                            </div> -->
+
+                            <div class="row" style="display:none">
+                                <label>City</label>
+                                <div>
+                                    <select id="dd-city" name="month" class="form-control input-lg">
+                                        <option value="1">City 1</option>
+                                        <option value="2">City 2</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label>School Type</label>
+                                <div>
+                                    <select id="school_type" name="school_type" class="form-control input-lg" >
+                                        <option value="Private School">Private School</option>
+                                        <option value="Public School">Public School</option>
+                                        <option value="virtual School">Virtual School</option>
+                                        <option value="Charter School">Charter School</option>
+                                        <option value="Home School">Home School</option>
+                                        <option value="After School">After School</option>
+                                        <option value="Private After School">Private After School</option>
+                                        <option value="Charter School">Other</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <label>Role</label>
+                                <div>
+                                    <select id="dd-role" class="form-control input-lg" onchange="roleChangeEvent()">
+                                        <option value="1">Coach</option>
+                                        <option value="2">Player</option>
+                                        <option value="3">Judge</option>
+                                        <option value="4">Organization</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <div id="org-pnl">
+
+                                <div class="row">
+                                    <label>Organization</label>
+                                    <div id="dd-org-div">
+                                        <select id="dd-org" name="organization" class="form-control input-lg">
+
+                                        </select>
+
+
+                                    </div>
+                                    <span style="float:right; cursor:pointer; font-weight:bold;display:none" id="not-list-orgn">Not in the list? Add New</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <input id="fullName" type="text" name="firstname" value=""
+                                       class="form-control input-lg" placeholder="First Name" />
+                            </div>
+                            <div class="row">
+                                <input id="lastName" type="text" name="lastName" value=""
+                                       class="form-control input-lg" placeholder="Last Name" />
+                            </div>
+                            <div class="row">
+                                <input id="email" type="email" name="email" value=""
+                                       class="form-control input-lg" placeholder="Your Email" />
+                            </div>
+                            <div class="row">
+                                <input
+                                        type="password" name="password" value="" id="password"
+                                        class="form-control input-lg" placeholder="Password" />
+                            </div>
+
+                            <div class="row" id="org-phoneno" >
+                                <input id="orgphoneno" type="text" name="phonen" value=""
+                                       class="form-control input-lg" placeholder="Phone No" />
+                            </div>
+
+
+
+
+
+                            <div class="row" id="pl_feild" style="display:none">
+                                <input id="feild" type="text" name="feild" value=""
+                                       class="form-control input-lg" placeholder="Feild" />
+                            </div>
+
+                            <div class="row" id="grade_div" style="display:none">
+                                <label>Grade</label>
+                                <div>
+                                    <select id="grade" name="school_type" class="form-control input-lg" >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row">
+                                <div id="parentDiv" style="display:none">
+                                    <label>Parental Consent   : </label> <label class="radio-inline"> <input
+                                        type="radio" name="consent" value="1" id="parent_consent_yes" /> Yes
+                                </label> <label class="radio-inline"> <input type="radio"
+                                                                             name="consent" value="0" id="parent_consent_no" /> No
+                                </label>
+                                    <input type="text" name="parentEmail" value=""
+                                           id="parent_email"	class="form-control input-lg" placeholder="Parent Email" />
+                                </div>
+                            </div>
+							
+							<div class="row">
+             
+                                    <label> Please select the leagues for which you are registering   : </label> 
+									<div>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Math, Primary 1 - 3" />Math, Primary 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Math, Primary 4 - 6" />Math, Primary 4 - 6</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Math, Forms 1 - 3" />Math, Forms 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Math, Forms 4 - 6" />Math, Forms 4 - 6</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Scratch, Primary 1 - 3" />Scratch, Primary 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Scratch, Primary 4 - 6" />Scratch, Primary 4 - 6</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Scratch, Forms 1 - 3" />Scratch, Forms 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Scratch, Forms 4 - 6" />Scratch, Forms 4 - 6</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Robotics, Primary 1 - 3" />Robotics, Primary 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Robotics, Primary 4 - 6" />Robotics, Primary 4 - 6</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Robotics, Forms 1 - 3" />Robotics, Forms 1 - 3</label>
+										<label style="font-weight: normal;"><input type="checkbox" name="league" value="Robotics, Forms 4 - 6" />Robotics, Forms 4 - 6</label>
+									</div>
+                            </div>
+							
+
+                            <br /> <span class="help-block">By clicking Create my
+						account, you agree to our Terms and that you have read our Data
+						Use Policy, including our Cookie Use.</span>
+                            <button id="btn" onclick="register()" class="btn btn-lg btn-primary btn-block signup-btn"
+                                    type="button">Create my account</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/mailbox.png" style="
+    margin-top: 140px;
+" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-2" style="background:#fff;margin-left:20px;width:30%;min-height:892px">
+                <legend>Contact Us</legend>
+                <p>
+                    K12YouthCode Organization <br/>
+                    Decatur, GA 30035 <br/>
+                    <a href="mailto:k12youthcode@gmail.com">k12youthcode@gmail.com</a> <br/>
+                    770-402-5857<br/>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+</div>
+<script>
+
+    $( document ).ready(function() {
+	
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+                type : "loadStates",
+                data : ""
+            },
+            success : function(data) {
+                var html ="";
+                var result  = JSON.parse(data);
+                for(var i in result){
+                    html += "<option value="+result[i].state_abv+"> "+result[i].state_abv+" </option>";
+                }
+
+                $("#dd-state").html(html);
+                loadCounties();
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+
+
+
+
+    });
+
+
+
+    function loadCounties(){
+
+        var state = $("#dd-state").val();
+
+        var data = {  } ;
+        data.state = state ;
+
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+                type : "loadCounties",
+                data : data
+            },
+            success : function(data) {
+                var html ="";
+                var result  = JSON.parse(data);
+                for(var i in result){
+                    html += "<option value="+result[i].county+"> "+result[i].county+" </option>";
+                }
+
+                $("#dd-county").html(html);
+                loadOrganization();
+                loadCity();
+
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+
+    }
+
+    function loadCity(){
+
+        var county = $("#dd-county").val();
+
+        var data = {  } ;
+        data.county = county ;
+
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+                type : "loadCity",
+                data : data
+            },
+            success : function(data) {
+                var html ="";
+                var result  = JSON.parse(data);
+                for(var i in result){
+                    html += "<option value="+result[i].title+"> "+result[i].title+" </option>";
+                }
+
+                $("#dd-city").html(html);
+                loadOrganization();
+
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+
+    }
+
+    $('#dd-county').on('change',function(){
+        loadCity();
+        loadOrganization();
+    });
+
+    $('#not-list-orgn').on('click',function(){
+        var htmlinput =  '<input id="enterOrganisation" type="text" name="enter-orgn" value="" class="form-control input-lg" placeholder="Enter Your Organisation" />';
+        $("#dd-org-div").html(htmlinput);
+		
+		$("#enterOrganisation").keyup(function(){
+			var getidd_role = $("#dd-role").val();
+			if(getidd_role == '1' || getidd_role == '2'){
+				alert("123STOP!! you may only register if your organization has already registered.  Ask your school or club administrator to sign up first");
+				$("#enterOrganisation").val('');
+			}
+		});
+    });
+
+    function loadOrganization(){
+        var county = $("#dd-county").val();
+        var state = $("#dd-state").val();
+        var data = { id:"-1" } ;
+        data.state = state ;
+        data.county = county;
+
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+                type : "loadOrganization",
+                data : data
+            },
+            success : function(data) {
+                var html ="";
+                var result  = JSON.parse(data);
+                html = '<select id="dd-org" name="organization" class="form-control input-lg">';
+                for(var i in result){
+                    html += "<option value="+result[i].id+"> "+result[i].org_name+" </option>";
+                }
+                html += '</select>';
+                if(result == ''){
+                    //alert('Organisation Not found on database, Please enter');
+                    var htmlinput =  '<input id="enterOrganisation" type="text" name="enter-orgn" value="" class="form-control input-lg" placeholder="Enter Your Organisation" />';
+
+                    $("#dd-org-div").html(htmlinput);
+					
+					
+					//alert(getidd_role);
+					//console.log(getidd_role);
+					
+					$("#enterOrganisation").keyup(function(){
+						var getidd_role = $("#dd-role").val();
+						if(getidd_role == '1' || getidd_role == '2'){
+							alert("123STOP!! you may only register if your organization has already registered.  Ask your school or club administrator to sign up first");
+							$("#enterOrganisation").val('');
+						}
+					});
+					
+					
+                }else{
+                    $("#dd-org-div").html(html);
+                }
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+
+    }
+
+
+    function saveCoachOrganization(id){
+
+        var data = {userId:id , orgId:$("#dd-org").val() } ;
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+
+                type : "saveCoachOrganization",
+                data : data
+            },
+            success : function(data) {
+
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+    }
+
+    function saveOrganization(name){
+
+        var data = {orgname:name ,firstname:$("#fullName").val() ,lastname:$("#lastName").val() , orgemail:$("#email").val(), orgpass:$("#password").val(), orgcounty:$("#dd-county").val(), orgstate:$("#dd-state").val() } ;
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+
+                type : "saveOrganization",
+                data : data
+            },
+            success : function(data) {
+                alert(data);
+                if(data == 987321){
+                    alert("Organisation already exist");
+                    return;
+                }
+            },
+            error : function(data) {
+                alert(data);
+                alert("Server Error please contact admin");
+                return;
+            }
+        });
+    }
+
+
+    function saveOrganization1(name){
+
+        var data = {orgstate:$("#dd-state").val(), orgcounty:$("#dd-county").val(),zip:$("#zip").val(),school_type:$("#school_type").val(),orgname:name , firstname:$("#fullName").val() ,lastname:$("#lastName").val(),orgemail:$("#email").val(), orgpass:$("#password").val(),orgphoneno:$("#orgphoneno").val()  } ;
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+
+                type : "saveOrganization",
+                data : data
+            },
+            success : function(data) {
+                //alert(data);
+                if(data == 987321){
+                    alert("Organisation already exist");
+                    return;
+                }else{
+                    window.location = "confirmation.html";
+                }
+            },
+            error : function(data) {
+                alert("Server Error please contact admin");
+                return;
+            }
+        });
+    }
+
+
+    function register(){
+
+        var data = {} ;
+        var fullName = $("#fullName").val();
+        if(fullName == ""){
+            alert("Full name is missing");
+            return ;
+        }
+        data.fullName = fullName ;
+
+        var lastName = $("#lastName").val();
+        if(lastName == ""){
+            alert("Full name is missing");
+            return ;
+        }
+        data.lastName = lastName ;
+
+        var email = $("#email").val();
+        if(email == ""){
+            alert("Email is missing");
+            return ;
+        }
+        data.email = email ;
+
+
+        $.session.set("sessemail",email);
+
+        //alert($.session.get("compareLeftContent"));
+        var yetVisited = localStorage['visited'];
+        if (!yetVisited) {
+            // open popup
+            localStorage['visited'] = "yes";
+        }
+
+        var enterOrganisation = $("#enterOrganisation").val();
+        if(enterOrganisation == ""){
+            alert("Organisation is missing");
+            return ;
+        }
+        //alert(enterOrganisation);
+        $.session.set("sessorg",enterOrganisation);
+
+
+
+        var password = $("#password").val();
+        if(password == ""){
+            alert("Password is missing");
+            return ;
+        }
+
+
+        data.password = password ;
+
+        var role_id = $("#dd-role").val();
+
+        data.role_id = role_id;
+
+        var state = $("#dd-state").val();
+
+        data.state = state ;
+
+        var county = $("#dd-county").val();
+        data.county =  county ;
+        var city = $("#dd-city").val();
+        data.city =  city ;
+
+        $.session.set("state",state);
+        $.session.set("county",county);
+
+        $.session.set("fullName",fullName);
+        $.session.set("lastName",lastName);
+
+
+        var zip = $("#zip").val();
+
+        if(zip !=""){
+            data.zip = zip;
+        }
+
+        var school_type = $("#school_type").val();
+        if(school_type !=""){
+            data.school_type = school_type;
+        }
+        var orgphoneno = $("#orgphoneno").val();
+        if(orgphoneno !=""){
+            data.orgphoneno = orgphoneno;
+        }
+
+        var feild = $("#feild").val();
+        if(feild != ""){
+            data.feild = feild;
+        }
+
+        var grade = $("#grade").val();
+        if(grade != ""){
+            data.grade = grade;
+        }
+
+        var parent_email = $("#parent_email").val();
+
+        if(parent_email !=""){
+            data.parent_email = parent_email;
+        }
+
+        if(document.getElementById('parent_consent_yes').checked){
+            data.parent_consent = "1";
+        }else{
+
+            data.parent_consent = "0";
+        }
+
+        //if( $("#dd-role").val() == "3" ) {
+        var orgval = $("#dd-org").val();
+        //alert(orgval);
+        var enterorg = $("#enterOrganisation").val();
+        if(enterorg == null){
+            //alert('not eneter');
+            data.org_id =  $("#dd-org").val() ;
+        }else{
+            //alert('eneter');
+            //alert(enterorg);
+            //saveOrganization(enterorg);
+            data.enterorg =  enterorg;
+        }
+        //alert(enterorg);
+
+        //}
+        if( $("#dd-role").val() == "4" ) {
+            var enterorg = $("#enterOrganisation").val();
+            saveOrganization1(enterorg);
+            //alert("Successfully Register ");
+
+            return;
+        }
+		 var league = [];
+            $.each($("input[name='league']:checked"), function(){            
+                league.push($(this).val());
+            });
+            //alert("My favourite sports are: " + league.join(", "));
+			data.league = league;
+			
+        $.ajax({
+            type : 'POST',
+            url : 'server/user.php',
+            data : {
+                type : "loadLeague",
+                data : data
+            },
+            success : function(response) {
+
+
+                var response = JSON.parse(response);
+                data.league_id = response[0].id ;
+
+                $.ajax({
+                    type : 'POST',
+                    url : 'server/user.php',
+                    data : {
+                        type : "registerUser",
+                        data : data
+                    },
+                    success : function(data1) {
+
+
+                        //alert(data1);
+						console.log(data1);
+                        try {
+                            JSON.parse(data1);
+                        } catch (e) {
+                            alert(data1);
+                            return false;
+                        }
+
+                        var data1 = JSON.parse(data1);
+
+                        try {
+
+                            if ($("#dd-role").val() == "1") {
+                                saveCoachOrganization(data1[0].id)
+                            }
+                            alert("Successfully Register ");
+                            if(role_id == 1){
+                                window.location = "social.html";
+                            }else{
+                                window.location = "pay1.html";    
+                            }
+                            
+
+                        } catch (e) {
+                            alert("Email is already registered.");
+                        }
+
+                    },
+                    error : function(data) {
+                        alert("Server Error please contact admin")
+                    }
+                });
+
+
+
+
+            },
+            error : function(data) {
+                alert("Server Error please contact admin")
+            }
+        });
+
+
+
+
+
+
+    }
+
+
+    function roleChangeEvent() {
+
+        var value = $("#dd-role").val();
+
+        if (value == "1" || value == "2" || value == "3") {
+
+            $("#parentDiv").show();
+            $("#org-pnl").show();
+        } else {
+
+            $("#parentDiv").hide();
+            $("#org-pnl").show();
+            var htmlinput =  '<input id="enterOrganisation" type="text" name="enter-orgn" value="" class="form-control input-lg" placeholder="Enter Your Organisation" />';
+            $("#dd-org-div").html(htmlinput);
+            $("#not-list-orgn").hide();
+
+            $("#org-phoneno").show();
+            $("#orgphoneno").show();
+        }
+
+        if (value == "1" || value == "2" ) {
+
+            //$("#org-pnl").show();
+        } else {
+
+        }
+
+
+        if (value == "1" || value == "3" || value == "4"){
+            $("#parentDiv").hide();
+            $("#grade_div").hide();
+        }
+        if (value == "2"){
+            //$("#pl_feild").show();
+            $("#grade_div").show();
+        }
+
+        if(value == "1" || value == "2" || value == "4"){
+            $("#not-list-orgn").hide();
+        }
+        if(value == "3"){
+            $("#not-list-orgn").show();
+        }
+    }
+</script>
+</body>
+
+</html>

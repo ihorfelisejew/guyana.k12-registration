@@ -1,0 +1,86 @@
+<?php
+
+function get_length($n){
+if(function_exists('mb_strlen')){
+return mb_strlen($n);}else{return strlen($n);}}
+
+$query='SELECT usr_id,usr_name FROM '.$dbss['prfx'].'_users';
+$result=neutral_query($query);
+
+$count_checked=0; $count_convert=0;
+if(isset($_GET['passcv'])){$count_convert=(int)$_GET['passcv'];}
+
+$users_to_convert=array();
+$duplicated_users=array();
+$usernames_2short=array();
+
+while($row=neutral_fetch_array($result)){
+$new_name=abc123($row['usr_name'],'');$count_checked++;
+if($new_name!=$row['usr_name']){
+$users_to_convert[]='UPDATE '.$dbss['prfx']."_users SET usr_name='$new_name' WHERE usr_id=".$row['usr_id'];}
+}
+
+for($i=0;$i<count($users_to_convert);$i++){neutral_query($users_to_convert[$i]);}
+
+$count_convert+=count($users_to_convert);
+
+if(count($users_to_convert)>0){
+print '<div style="margin:10pt">Please wait... '.$count_checked.'/'.$count_convert.'</div>';
+print '<script type="text/javascript">u=\'admin.php?q=80u&passcv='.$count_convert.'\';setTimeout(\'window.location.href=u\',2000)</script>';
+include 'admin/overal_footer.pxtm';
+die();}
+
+// ------
+
+$query='DELETE FROM '.$dbss['prfx'].'_users WHERE LENGTH(usr_name)<1';
+neutral_query($query);
+
+$query='SELECT usr_name, COUNT(*) c FROM '.$dbss['prfx'].'_users GROUP BY usr_name HAVING c > 1';
+$result=neutral_query($query);
+while($row=neutral_fetch_array($result)){
+$link='admin.php?s='.$row['usr_name'].'&q=users&w=1';
+$duplicated_users[]='<a href="'.$link.'" onclick="window.open(\''.$link.'\');return false">'.$row['usr_name'].'</a>';
+}
+
+$query='SELECT usr_id,usr_name FROM '.$dbss['prfx'].'_users';
+$result=neutral_query($query);
+while($row=neutral_fetch_array($result)){
+if(get_length($row['usr_name'])<3){
+$link='admin.php?q=user&u='.$row['usr_id'];
+$usernames_2short[]='<a href="'.$link.'" onclick="window.open(\''.$link.'\');return false">'.$row['usr_name'].'</a>';}
+}
+
+if(!isset($settings['80u'])){$query='INSERT INTO '.$dbss['prfx']."_settings VALUES('80u','1',1)";
+neutral_query($query);}
+
+?>
+
+<div class="content">
+<div id="bl1">
+
+<h4>USER CONVERSION (BlaB! 8.0 and above)</h4>
+usernames checked: <?php print $count_checked;?><br />
+usernames converted: <?php print $count_convert;?><br />
+conflicts: <?php $x=count($duplicated_users);$y=count($usernames_2short);$z=$x+$y;print $z;?><br />&nbsp;<br />
+
+<b><a href="#" onclick="window.location.href='admin.php?q=80u';return false">Check again</a> &middot; <a href="admin.php?q=update">NEXT</a></b>
+<div class="hr"></div>
+<?php 
+
+if($x>0){
+print '<h4>Duplicated users</h4>';
+$duplicated_users=implode(' &middot; ',$duplicated_users);
+print '<b>'.$duplicated_users.'</b>';
+print '<div class="hr"></div>';
+}
+
+if($y>0){
+print '<h4>Usernames too short</h4>';
+$usernames_2short=implode(' &middot; ',$usernames_2short);
+print '<b>'.$usernames_2short.'</b>';
+print '<div class="hr"></div>';
+}
+
+?> 
+</div>
+</div>

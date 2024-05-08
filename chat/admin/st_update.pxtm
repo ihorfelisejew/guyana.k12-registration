@@ -1,0 +1,41 @@
+<table><tr>
+<td style="vertical-align:top" class="navbar2">
+<div style="margin:10px;text-align:right;white-space:nowrap">
+<?php include 'admin/menu_settings.pxtm';?>
+</div></td><td style="vertical-align:top" class="content">
+
+<?php 
+
+if(!isset($settings['int_version']) || $settings['int_version']<82){?>
+<p style="text-align:justify"><?php print $lang['update_d2'];?> <br />&nbsp;<br />
+<input class="btn" type="button" value="<?php print $lang['update'];?>" onclick="window.location.href='admin.php?update=1'" />
+</p>
+
+<?php }elseif(!isset($settings['80d']) && ($dbss['type']=='mysqli' || $dbss['type']=='mysql')){?>
+
+<p class="title">Convert database</p>
+You may need to convert database tables to utf8 as well. Before you proceed:
+<ul>
+<li>Make sure that non-latin letters DO NOT appear properly (in messages, usernames etc).</li>
+<li>Make sure that you have a full backup (MySQL dump) of the BlaB! tables.</li>
+<li>Do <b>NOT</b> reload, it may take several minutes.</li>
+</ul>
+
+<div>
+<input type="button" style="font-weight:bold;padding:10pt;margin:10pt;float:right" value="CONVERT DATABASE" onclick="window.location.href='admin.php?q=80d'" />
+<input type="button" style="font-weight:bold;padding:10pt;margin:10pt;float:right" value="NO THANKS! DATABASE IS OK" onclick="window.location.href='admin.php?q=80d&utf8_ok=1'" />
+</div>
+
+<?php }elseif(!isset($settings['80u'])){?>
+
+<p class="title">Check &amp; convert usernames</p>
+You need to convert usernames as well. From version 8.0 only letters, numbers and spaces are allowed.
+You'll be informed about possible conflicts on the next page. Do NOT reload, it may take several minutes.
+
+<div><input type="button" style="font-weight:bold;padding:10pt;margin:10pt;float:right" value="CHECK &amp; CONVERT USERNAMES" onclick="window.location.href='admin.php?q=80u'" /></div>
+
+<?php }else{?>
+<p style="text-align:justify"><?php print $lang['update_d1'];?></p>
+<?php }?>
+
+</td></tr></table>

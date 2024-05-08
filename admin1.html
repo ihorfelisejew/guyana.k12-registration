@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Coach Dashboard</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
+<script src="js/jquery.form.min.js"></script>
+
+<script src="js/utils.js"></script>
+<script src="js/admin.js"></script>
+ <style>
+.datepicker{z-index:1151 !important;}
+</style>
+</head>
+<body>
+
+	<div id="header"></div>
+	<br />
+	<!-- Team Members -->
+	<div class="container">
+		<div class="col-lg-12">
+			<h2 class="page-header">Administration</h2>
+
+		</div>
+
+
+		<div id="main">
+			<div class="container">
+				<button id="link-btn"  data-toggle="modal" onclick="openCreateChallengePP()"
+					data-target="#addChallenge"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Create Challenge
+				</button>
+				<button id="searchLeague-btn"  data-toggle="modal"
+					data-target="#searchLeague"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Search League
+				</button>
+				<button id="searchTeam-btn"  data-toggle="modal"
+					data-target="#searchTeam"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Search Team
+				</button>
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#changeStatus"
+					class="btn btn-lg btn-primary  signup-btn" onclick="loadAllUser()" type="button">Change status
+				</button>
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#loadWinners"
+					class="btn btn-lg btn-primary  signup-btn" onclick="showWinners()" type="button">View Winners
+				</button>
+				<button id="rounds-btn"  data-toggle="modal"
+					data-target="#loadRounds"
+					class="btn btn-lg btn-primary  signup-btn" onclick="openRoundsPopup()" type="button">Rounds
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#loadEmails"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">Send Emails
+				</button>
+			<!-- 	<button id="challengeText-btn"  data-toggle="modal"
+					data-target="#challengeText"
+					class="btn btn-lg btn-primary  signup-btn" onclick="" type="button">Upload Challenge Text
+				</button> -->
+			
+
+			</div>
+		</div>
+			<div class="col-md-12">
+			
+			</div>
+
+		</div>
+<!--Emails POP UP -->
+	<div class="modal fade" id="loadEmails" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Emails</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							 
+							 </thead>
+							  <tbody id="email-body">
+							
+								<tr>
+									<td>
+										<select id="email-role" class="form-control input-lg" onchange="roleChangeEvent()">
+											<option value="0">All</option>
+											<option value="1">Coach</option>
+											<option value="2">Player</option>
+											<option value="3">Judge</option>
+											<option value="4">Organization</option>										
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input class="form-control input-lg" type="text" Placeholder="subject" name="subject" id="email-subject" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<textarea class="form-control input-lg" id="email-meaasge"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+								<button id="rounds-btn" class="btn btn-lg btn-primary  signup-btn" onclick="openEmailPopup()" type="button">Send Emails
+								</button>
+									</td>
+								</tr>
+							  </tbody>
+					  </table>
+
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+<!--Rounds POP UP -->
+	<div class="modal fade" id="loadRounds" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Rounds</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							   <tr>
+							     <th>Round</th>
+							     <th># Challenge</th>
+							   </tr>
+							 </thead>
+							  <tbody id="round-body">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+<!--winner list POP UP -->
+	<div class="modal fade" id="loadWinners" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Winner list</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							   <tr>
+							     <th>Team</th>
+							     <th>Rating</th>
+							     <th>Round</th>
+							     <th>Challenge</th>
+							   </tr>
+							 </thead>
+							  <tbody id="winner-body">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+<!--Change status POP UP -->
+	<div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Change status</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="user-list">
+					
+					</ul>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+<!--Search TEAM POP UP -->
+	<div class="modal fade" id="searchTeam" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Search Team</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="team-list">
+					
+					</ul>
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="team-name" placeholder="Search league" /> 
+						</div>
+						
+						<div class="input-group date" >
+							<input id="searchTeam-btn-pp"  onclick="searchTeam()" value="Search" type="button" class="form-control">
+						</div>
+						</div>
+
+
+
+					
+				</div>
+				
+			</div>
+		</div>
+<!--SearchLeague POP UP -->
+	<div class="modal fade" id="searchLeague" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Search League</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="league-list">
+					
+					</ul>
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="league-name" placeholder="Search league" /> 
+						</div>
+						
+						<div class="input-group date" >
+							<input id="searchLeague-btn-pp"  onclick="searchLeague()" value="Search" type="button" class="form-control">
+						</div>
+						</div>
+
+
+
+					
+				</div>
+				
+			</div>
+		</div>
+	
+
+<!-- Add Challenge POP UP -->
+	<div class="modal fade" id="addChallenge" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="addChallenge"> Add Challenge</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="players-list">
+					
+					</ul>
+					<form role="form" >
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-name"  /> 
+						</div>
+						<label for="name">Challenge text</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-txt"  /> 
+						</div>
+						
+					<label for="name">Start Date</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="startDate" data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+						
+						<label for="name">End Date</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="endDate"  data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+						
+						<label for="name">Round</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<select id="round-dd">
+						
+							</select>
+						</div>
+						</div>
+
+
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" onclick="saveChallenge()"  class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Challenge Text popup -->
+	<div class="modal fade" id="challengeText" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >  Challenge Text</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="players-list">
+					
+					</ul>
+					<form role="form" >
+					
+						<label for="name">Challenge text</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-txt"  /> 
+						</div>
+						
+					<label for="name">Deadline</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="deadline" data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+	
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" onclick="saveChallengeText()"  class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="panel panel-default">
+	<div class="panel-heading">Challenge</div>
+   		 <div class="modal-header">
+					
+					<h4 class="modal-title" >Challenges</h4>
+				</div>
+				<div class="modal-body">
+					<table id="chng-list" class="table">
+						
+					</table>
+				</div>
+	</div>
+
+	<div id="footer"></div>
+
+</body>
+</html>

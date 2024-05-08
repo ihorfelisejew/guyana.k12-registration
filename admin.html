@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboar</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
+<script src="js/jquery.form.min.js"></script>
+
+<script src="js/utils.js"></script>
+<link href="css/custom.css" rel="stylesheet"/>
+ <style>
+   .datepicker{z-index:1151 !important;}
+	.section-dropdown-sub a {
+		display: block;
+		/* background-color: #426cf7; */
+		/* color: white; */
+		width: 250px !important;
+		font-size: larger;
+		margin-bottom: 3px !important;
+		padding: 3px 6px !important; 
+	}
+	.section-dropdown-sub a .uil {
+		font-size: 20px;
+	}
+</style>
+</head>
+<body>
+
+	<div id="header"></div>
+	<br />
+
+	<div class="row page-heading">
+		<div class="container">
+			<h1 >Administration</h1>
+		</div>
+	</div>
+	
+	<div class="main-section" >
+	
+	<div class="container"  >
+	
+		<div class="admin-section section">
+			<a class="admin-page-button" href="manage-people-and-clubs.html">Manage People & Clubs</a>
+			<a class="admin-page-button" href="">Reporting & Analytics</a>
+			<a class="admin-page-button" href="competition-management.html">Manage Competitions</a>
+			<a class="admin-page-button" href="manage-lessions.html">Manage Lessions</a>
+			<a class="admin-page-button" href="">News and Announcements</a>
+			
+		</div>
+
+	
+	</div>
+
+	<!-- Team Members -->
+	<!-- <div class="container" style="margin-top:100px">
+		<div class="col-lg-12">
+			<h2>Administration</h2>
+
+		</div>
+
+
+		<div id="main">
+			<div class="container" id="button_settings">
+				<button id="link-btn"  data-toggle="modal" onclick="openCreateChallengePP()"
+					data-target="#addChallenge"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Create Challenge
+				</button>
+				<button id="searchLeague-btn"  data-toggle="modal"
+					data-target="#searchLeague"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Search League
+				</button>
+				<button id="searchTeam-btn"  data-toggle="modal"
+					data-target="#searchTeam"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Search Team
+				</button>
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#changeStatus"
+					class="btn btn-lg btn-primary  signup-btn" onclick="loadAllUser()" type="button">Change status
+				</button>
+				
+				
+				<button class="btn btn-primary btn-lg" data-toggle="modal"
+					data-target="#standingPP1">League Standing Round 1</button>
+				
+				<button class="btn btn-primary btn-lg" data-toggle="modal"
+					data-target="#standingPP">League Standing Round 2</button>
+				<button class="btn btn-primary btn-lg" data-toggle="modal"
+					data-target="#standingPPR3">League Standing Round 3</button>	
+				
+				
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#loadWinners"
+					class="btn btn-lg btn-primary  signup-btn" type="button">View Winners
+				</button>
+				
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#loadWinnersR2"
+					class="btn btn-lg btn-primary  signup-btn" type="button">View Round 2 Winners
+				</button>
+				
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#loadWinnersR3"
+					class="btn btn-lg btn-primary  signup-btn" onclick="showWinnersAllAdminR3()" type="button">View Round 3 Winners
+				</button>
+				
+				<button id="rounds-btn"  data-toggle="modal"
+					data-target="#loadRounds"
+					class="btn btn-lg btn-primary  signup-btn" onclick="openRoundsPopup()" type="button">Rounds
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#loadEmails"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">Send Emails
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#invoiceDetails"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">Invoice Details
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#newsticker"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">News Announcement 1
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#newsticker2"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">News Announcement 2
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#newsticker3"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">News Announcement 3
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#addLessions"
+					class="btn btn-lg btn-primary  signup-btn"  type="button">Add Lesson
+				</button>
+				
+				<button id="rounds-btnjhhhjhj"  data-toggle="modal"
+					data-target="#discount"
+					class="btn btn-lg btn-primary  signup-btn"  onclick="getPlayers()" type="button">Manage Discounts
+				</button>
+				<div style="display: inline-block; position: relative;">
+					<button style="width: 250px !important;"
+						class="btn btn-lg btn-primary  signup-btn" id="payment-dropdown"  type="button">Manage Monthly payments
+					</button>	
+					<div class="section-dropdown-sub" style="position: absolute; display: none;"> 
+						<a class="btn btn-info" data-toggle="modal" onclick="getPlayersForPayment()"
+						data-target="#ManageMonthlypayments" style="margin-top: -8px;">All Players <i class="uil uil-arrow-right"></i></a>
+						<a class="btn btn-info" data-toggle="modal" onclick="getPlayersForPaymentBalance()"
+						data-target="#ManageMonthlypaymentsBalance">Players with status balance <br> outstanding<i class="uil uil-arrow-right"></i></a>
+					</div>
+				</div>
+				<script>
+					$(document).ready(function(){
+						$('#payment-dropdown').click(function() {
+							$('.section-dropdown-sub').slideToggle("fast");
+						});
+					});
+				</script>
+				-->
+
+			<!-- 	<button id="challengeText-btn"  data-toggle="modal"
+					data-target="#challengeText"
+					class="btn btn-lg btn-primary  signup-btn" onclick="" type="button">Upload Challenge Text
+				</button> -->
+			
+				<!--
+			</div>
+		</div>
+			<br>
+			<div class="col-md-12">
+			
+			</div>
+            <h3 style="padding:10px 0"><strong>Challenge</strong></h3>
+            <div class="panel panel-default">
+                  <div class="task_table_scroll">
+                     <table id="chng-list" class="table">
+                                    
+                     </table>
+                  </div>
+            </div>
+
+		</div> -->
+<!--Emails POP UP -->
+	<div class="modal fade" id="loadEmails" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Emails</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							 
+							 </thead>
+							  <tbody id="email-body">
+							
+								<tr>
+									<td>
+										<select id="email-role" class="form-control input-lg" onchange="roleChangeEvent()">
+											<option value="0">All</option>
+											<option value="1">Coach</option>
+											<option value="2">Player</option>
+											<option value="3">Judge</option>
+											<option value="4">Organization</option>										
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input class="form-control input-lg" type="text" Placeholder="subject" name="subject" id="email-subject" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<textarea class="form-control input-lg" id="email-meaasge"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+								<button id="rounds-btn" class="btn btn-lg btn-primary  signup-btn" onclick="openEmailPopup()" type="button">Send Emails
+								</button>
+									</td>
+								</tr>
+							  </tbody>
+					  </table>
+
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+<!--Rounds POP UP -->
+	<div class="modal fade" id="loadRounds" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Rounds</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							   <tr>
+							     <th>Round</th>
+							     <th># Challenge</th>
+							   </tr>
+							 </thead>
+							  <tbody id="round-body">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+<!--winner list POP UP -->
+	<div class="modal fade" id="loadWinners" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Winner list</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+							<input type="text" placeholder="Search By State" id="adminstateval" onkeyup="showWinnersAll(this.value);" />
+							
+							<input type="text" placeholder="Search By County" id="admincountyval" style="display:none" onkeyup="showWinnersAllCounty(this.value);" />
+					  	   <thead>
+							   <tr>
+							     <th>Team</th>
+							     <th>Rating</th>
+							     <th>Round</th>
+							     <th>NDC/Muni</th>
+								 <th>Region</th>
+								 <th>Org Name</th>
+							   </tr>
+							 </thead>
+							  <tbody id="winner-body">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+<!--winner list POP UP -->
+	<div class="modal fade" id="loadWinnersR2" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Winner list</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+							<input type="text" placeholder="Search By State" onkeyup="showWinnersAllAdminR2(this.value);" />													
+					  	   <thead>
+							   <tr>
+							     <th>Team</th>
+							     <th>Rating</th>
+							     <th>Round</th>
+							     <th>NDC/Muni</th>
+								 <th>Region</th>
+								 <th>Org Name</th>
+							   </tr>
+							 </thead>
+							  <tbody id="winner-bodyR2">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>	
+	
+<!--winner list POP UP -->
+	<div class="modal fade" id="loadWinnersR3" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Winner list</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+							
+					  	   <thead>
+							   <tr>
+							     <th>Team</th>
+							     <th>Rating</th>
+							     <th>Round</th>
+							     <th>NDC/Muni</th>
+								 <th>Region</th>
+								 <th>Org Name</th>
+							   </tr>
+							 </thead>
+							  <tbody id="winner-bodyR3">
+							
+					
+							  </tbody>
+					  </table>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>		
+	
+	
+<!--Change status POP UP -->
+	<div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Change status</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="user-list">
+					
+					</ul>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+<!--Search TEAM POP UP -->
+	<div class="modal fade" id="searchTeam" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Search Team</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="team-list">
+					
+					</ul>
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="team-name" placeholder="Search league" /> 
+						</div>
+						
+						<div class="input-group date" >
+							<input id="searchTeam-btn-pp"  onclick="searchTeam()" value="Search" type="button" class="form-control">
+						</div>
+						</div>
+
+
+
+					
+				</div>
+				
+			</div>
+		</div>
+<!--SearchLeague POP UP -->
+	<div class="modal fade" id="searchLeague" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Search League</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="league-list">
+					
+					</ul>
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="league-name" placeholder="Search league" /> 
+						</div>
+						
+						<div class="input-group date" >
+							<input id="searchLeague-btn-pp"  onclick="searchLeague()" value="Search" type="button" class="form-control">
+						</div>
+						</div>
+
+
+
+					
+				</div>
+				
+			</div>
+		</div>
+	
+
+<!-- Add Challenge POP UP -->
+	<div class="modal fade" id="addChallenge" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="addChallenge"> Add Challenge</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="players-list">
+					
+					</ul>
+					<form role="form" >
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-name"  /> 
+						</div>
+						<label for="name">Challenge text</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-txt"  /> 
+						</div>
+						
+					<label for="name">Start Date</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="startDate" data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+						
+						<label for="name">End Date</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="endDate"  data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+						
+						<label for="name">Round</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<select id="round-dd">
+						
+							</select>
+						</div>
+						</div>
+                        
+                        <label for="name">Learning obj</label>
+						<div class="form-group ">
+							<input type="text" id="learning-obj"  /> 
+						</div>
+                        <label for="name">Tutorial url</label>
+						<div class="form-group ">
+							<input type="text" id="tutorial-url"  /> 
+						</div>
+                         <label for="name">Intro Video</label>
+						<div class="form-group ">
+							<input type="text" id="intro-video"  /> 
+						</div>
+
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" onclick="saveChallenge()"  class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Add Challenge POP UP -->
+	<div class="modal fade" id="addLessions" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="addChallenge"> Add Lesson</h4>
+				</div>
+				<form role="form" id="formpidata" action="ajaxupload.php" method="post" enctype="multipart/form-data">
+				<div class="modal-body">
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input class="form-control" type="text" id="lession_name" name="lession_name"  /> 
+						</div>
+						<label for="name">Round</label>
+						<div class="form-group ">
+							<select class="form-control" id="lession_round" name="lession_round">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select> 
+						</div>
+						<label for="name">PDF File</label>
+						<!--<div class="form-group ">
+							
+							<input id="uploadImage" type="file" accept="image/*" name="image"  style="display:block" />
+						</div>-->
+						<div class="form-group ">
+							
+							<input class="form-control" id="uploadImage_text" type="text" name="uploadImage_text"  style="display:block" />
+						</div>
+						<div id="preview" style="color: #3ec307;font-size: 16px;"></div><br/>
+						<div id="err"></div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit"  class="btn btn-primary">Save</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- challenge manage discount -->
+
+	<div class="modal fade" id="discount" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="
+			width: 650px;
+		">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="addChallenge"> Manage discount</h4>
+				</div>
+				<form role="form" id="payment_save" action="server/coach.php" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="type" value="payment_save">
+				<div class="modal-body">
+					<div class="search-container">
+						<label for="name">Search by full name or org name</label>
+						<div class="form-group ">
+							<input class="form-control" id="searchUser" type="text" name="uploadImage_text"  style="display:block" />
+						</div>
+					</div>
+					<div class="table-container">
+						<div class="row">
+							<div class="col-12">
+								<table class="table table-border table-strip table-hover">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Current Due</th>
+											<th>Discount (%)</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody id="players">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-info" style="float: left;" data-toggle="modal" data-target="#calculate">Calculate</a>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="calculate" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">					
+						<h4 class="modal-title" id="addChallenge"> Calculate Monthly payment</h4>
+					</div>
+					<div class="modal-body">
+						<h4 class="text-center" style="line-height: 30px">Are you sure to calculate payment for this month?</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="ok-cal-btn" class="btn btn-primary"> Yes </button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 10px">Close</button>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	
+
+	<!-- challenge Manage Monthly payment -->
+
+	<div class="modal fade" id="ManageMonthlypayments" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<form role="form" action="server/csv_download.php" method="post" enctype="multipart/form-data">
+				<div class="modal-content">
+					<div class="modal-header">					
+						<h4 class="modal-title" id="addChallenge"> Manage Monthly payment</h4>
+					</div>
+					<div class="modal-body">
+						<div class="table-container">
+							<table class="table table-border table-strip table-hover">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Balance</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody id="playersForPayment" style="max-height: 300px; overflow-x: auto">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="csv_download_all" class="btn btn-primary"> CSV Download</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 10px">Close</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	
+
+	<div class="modal fade" id="ManageMonthlypaymentsBalance" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<h4 class="modal-title" id="addChallenge"> Manage Monthly payment with balance outstanding</h4>
+				</div>
+				<form role="form" id="formpidata" action="server/csv_download1.php" method="post" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="table-container">
+						<table class="table table-border table-strip table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Balance</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody id="playersForPaymentBalance" style="max-height: 300px; overflow-x: auto">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit"  id="csv_download_out" class="btn btn-primary"> CSV Download</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 10px">Close</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Challenge Text popup -->
+	<div class="modal fade" id="challengeText" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >  Challenge Text</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="players-list">
+					
+					</ul>
+					<form role="form" >
+					
+						<label for="name">Challenge text</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-txt"  /> 
+						</div>
+						
+					<label for="name">Deadline</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="deadline" data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+	
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" onclick="saveChallengeText()"  class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="modal fade" id="standingPP1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> League Standing</h4>
+				</div>
+				<div class="modal-body">
+					
+					<table class="table table-hover" id="task-table">
+						<input type="text" placeholder="Search By County" onkeyup="getTeamRankingAdminR1(this.value);" />
+						
+						<thead>
+							<tr>
+								
+								<th>Name</th>
+								<th>Total score</th>
+								<th>Coach Name</th>
+								<th>NDC/Muni</th>
+								<th>Region</th>
+								<th>Org Name</th>
+							</tr>
+						</thead>
+						<tbody id="standingsR1">
+
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+	
+	
+<div class="modal fade" id="standingPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> League Standing</h4>
+				</div>
+				<div class="modal-body">
+					
+					<table class="table table-hover" id="task-table">
+						<input type="text" placeholder="Search By State" onkeyup="getTeamRankingAdminR2(this.value);" />
+						
+						<thead>
+							<tr>
+								
+								<th>Name</th>
+								<th>Total score</th>
+								<th>Coach Name</th>
+								<th>NDC/Muni</th>
+								<th>Region</th>
+								<th>Org Name</th>
+							</tr>
+						</thead>
+						<tbody id="standings">
+
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<div class="modal fade" id="standingPPR3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> League Standing</h4>
+				</div>
+				<div class="modal-body">
+					
+					<table class="table table-hover" id="task-table">
+						<input type="text" placeholder="Search By State" onkeyup="getTeamRankingAdminR3(this.value);" />
+						
+						<thead>
+							<tr>
+								
+								<th>Name</th>
+								<th>Total score</th>
+								<th>Coach Name</th>
+								<th>NDC/Muni</th>
+								<th>Region</th>
+								<th>Org Name</th>
+							</tr>
+						</thead>
+						<tbody id="standingsR3">
+
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="modal fade" id="invoiceDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> All Invoices</h4>
+				</div>
+				<div class="modal-body">
+					
+					<table class="table table-hover" id="invoice-table">
+						<input type="text" placeholder="Organization Name" id="txt_search_input" onkeyup="SearchFunction()" />
+						
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Org Name</th>
+								
+								<th><button id="orderBtn" class="myBtn" >Date</button></th>
+								<th>Amount</th>
+								<th><button id="statusBtn" class="myBtn" >Status</button></th>
+                                <th>#no</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody id="invoice_details">
+
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="modal fade" id="newsticker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel">News Ticker</h4>
+				</div>
+				<div class="modal-body">
+					
+				<table class="table table-hover" id="invoice-table">										
+						<tbody id="invoice_details">
+							<tr>
+									<td>
+										<textarea class="form-control input-lg" id="newstickertext"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+								<button id="rounds-btn" class="btn btn-lg btn-primary  signup-btn" onclick="newsticker()" type="button">Update News
+								</button>
+									</td>
+								</tr>
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="modal fade" id="newsticker2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel">News Ticker</h4>
+				</div>
+				<div class="modal-body">
+					
+				<table class="table table-hover" id="invoice-table">										
+						<tbody id="invoice_details">
+							<tr>
+									<td>
+										<textarea class="form-control input-lg" id="newstickertext2"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+								<button id="rounds-btn" class="btn btn-lg btn-primary  signup-btn" onclick="newsticker2()" type="button">Update News
+								</button>
+									</td>
+								</tr>
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="modal fade" id="newsticker3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel">News Ticker</h4>
+				</div>
+				<div class="modal-body">
+					
+				<table class="table table-hover" id="invoice-table">										
+						<tbody id="invoice_details">
+							<tr>
+									<td>
+										<textarea class="form-control input-lg" id="newstickertext3"></textarea>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+								<button id="rounds-btn" class="btn btn-lg btn-primary  signup-btn" onclick="newsticker3()" type="button">Update News
+								</button>
+									</td>
+								</tr>
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<div class="modal fade" id="invoiceUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> Update Invoice</h4>
+				</div>
+				<div class="modal-body">
+					
+					<div class="form-group">
+                      <label>Enter Check No</label>
+                      <input type="text" required class="form-control" name="check_num" id="check_num" value="">
+                      <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                    </div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="UpdateInvoiceData()" data-dismiss="modal">Submit</button>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+	<div id="footer"></div>
+   <script> 
+   $(document).on("click", ".change_invc_status", function () {
+         var imagesource = $(this).data('id');
+		 $('#invoice_id').val(imagesource)
+		
+     });
+    </script> 
+</body>
+<!-- <footer>
+   <div class="article">
+     <div class="left box">
+       <div class="upper">
+         <div class="topic">About us</div>
+         <p>"PakaInfo was founded in January 2018 with the aim of sharing a place for General Information languages articles.</p>
+       </div>
+       <div class="lower">
+         <div class="topic">Contact us</div>
+         <p>
+                    Guyana Agent:  STEMGuyana <br/>
+                    Sports Hall, Homestretch Avenue, Georgetown, Guyana <br/>
+                    <a href="mailto:stemguyana@gmail.com">stemguyana@gmail.com</a> <br/>
+                    592-604-2037 [whatsapp only]<br/>
+        </p>
+       </div>
+     </div>
+     <div class="middle box">
+       
+     </div>
+     <div class="right box">
+       
+       
+     </div>
+   </div>
+   <div class="bottom">
+     <p>Copyright © 2022  All rights reserved</p>
+   </div>
+ </footer> -->
+ <script src="./js/admin.js"></script>
+</html>

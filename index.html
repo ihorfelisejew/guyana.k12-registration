@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Sports League</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/utils.js"></script>
+
+
+<link href="css/custom.css" rel="stylesheet" type="text/css"
+	media="all" />
+
+<script>
+
+	function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
+
+	
+
+
+	function roleSelected(){
+		if($("#dd-role").val() == 2){
+			$("#login-name-input").css('display', 'table');
+			$('#login-password-input').css('display', 'none');
+		} else{
+			$("#login-name-input").css('display', 'none');
+			$('#login-password-input').css('display', 'table');
+		}
+		$('#login-phone-input').css('display', 'table');
+
+	}
+
+		function login(){
+			
+			// var email =$("#login-email").val();
+			// if (validateEmail(email)) {				
+			// 	var phone = '';
+			// }else{				
+			// 	var phone = email;
+			// }
+			var password =$("#login-password").val();
+			var phone =$("#login-phone").val();
+			var name =$("#login-name").val();
+
+			if($("#dd-role").val() == 2){
+				if(phone == ""  || name == "" ){
+					alert('Phone Number and First Name are required');
+				return ;
+				}
+			
+			} else {
+				if(phone == "" || password == "" ){
+					alert('Phone Number and Password are required')
+
+				return ;
+				}
+			
+			}
+			
+			var role_id = $("#dd-role").val();
+    
+			
+			var data = {} ;
+			data.name = name;
+			data.password = password;
+			data.phone = phone;
+			data.role_id = role_id;
+			console.log(data)
+			
+			$.ajax({
+				type : 'POST',
+				url : 'server/user.php',
+				data : {
+					type : "login",
+					data : data
+				},
+				success : function(data) {
+					//alert(data);
+					//console.log(data);
+					if(data.trim() == "0"){
+						alert("Invalid Login ");
+					}else if(data.trim() == "2"){
+						alert("Organisation is not active yet");
+					}else{
+						var obj =JSON.parse(data)[0];
+						var user = obj;
+						obj = JSON.stringify(obj);
+						sessionStorage.setItem("user", obj);
+						if(user.role_id =="2"){
+							window.location = "player.html";
+						}
+						if(user.role_id =="3"){
+							window.location = "judge.html";
+						}
+						if(user.role_id =="1"){
+							window.location = "coach.html";
+						}
+						if(user.role_id =="4"){
+							window.location = "organization.html";
+						}
+						
+						if(user.role_id =="5"){
+							window.location = "admin.html";
+						}
+						
+						if(user.role_id =="6"){
+							window.location = "masteraccount.html";
+						}
+
+						if(user.role_id =="7"){
+							window.location = "volunteer.html";
+						}
+						
+					}
+
+				},
+				error : function(data) {
+					alert("Server Error please contact admin")
+				}
+			});
+			
+			
+		}
+	
+</script>
+</head>
+
+<body>
+
+	<div id="header">
+    </div>
+
+    <div class="row page-heading">
+        <div class="container">
+            <h1 class="heading_settingd">Login</h1>
+        </div>
+    </div>
+
+<div class="main-section" >
+    
+    <div class="container" id="wrap" >
+
+       
+
+			<div class="col-sm-8 first-section section-gap">
+				<div class="col-sm-8">
+					<div class="inside-container" id="loginbox" >
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="panel-title">Sign In</div>
+								<!-- <div
+									style="float: right; font-size: 80%; position: relative; top: -10px">
+									<a href="#">Forgot password?</a>
+								</div> -->
+							</div>
+			
+							<div style="padding-top: 30px" class="panel-body" >
+			
+								<div style="display: none" id="login-alert"
+									class="alert alert-danger col-sm-12"></div>
+			
+								<form id="loginform" class="form-horizontal" role="form">
+			
+									<div style="margin-bottom: 25px" class="input-group">
+										<span class="input-group-addon"><i 
+											class="fa fa-user"></i></span> <select id="dd-role" autocomplete="off" onchange="roleSelected()" class="form-control" onchange="roleChangeEvent()">
+													<option value="" disabled selected>Select Your Role</option>
+													<option value="1">Coach</option>
+													<option value="2">Player</option>
+													<option value="3">Judge</option>
+													<option value="7">Volunteer</option>
+												</select>
+									</div>
+			
+									<div class="input-group" id="login-name-input">
+										<span class="input-group-addon"><i 
+											class="fa fa-user"></i></span> <input id="login-name"
+											type="text" class="form-control" name="name" value=""
+											placeholder="First Name">
+									</div>
+			
+			
+									<div style="margin-top: 25px; margin-bottom: 25px" class="input-group" id="login-phone-input">
+										<span class="input-group-addon"><i 
+											class="fa fa-phone"></i></span> <input id="login-phone"
+											type="text" autocomplete="tel" class="form-control" name="phone" value=""
+											placeholder="Phone Number">
+									</div>
+			
+									<div style="margin-bottom: 25px" class="input-group" id="login-password-input">
+										<span class="input-group-addon"><i
+											class="fa fa-lock"></i></span> <input id="login-password"
+											type="password" class="form-control" name="password"
+											placeholder="Password">
+									</div>
+			
+			
+			
+									<div style="margin-top: 10px" class="form-group">
+										<!-- Button -->
+			
+										<div class="col-sm-12 controls">
+											<a id="btn-login" href="javascript:void(0)" onclick="login()" width="100%" class="btn log-btn btn-success">Login </a>
+			
+										</div>
+									</div>
+			
+			
+									<div class="form-group">
+										<div class="col-md-12 control">
+											<div
+												style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
+												<a href="register.html" style="float:left"
+													onClick="$('#loginbox').hide(); $('#signupbox').show()">
+													Sign Up Here </a>
+													
+													<a style="float:right" href="forgotpass.html">
+													forgot password ? </a>
+											</div>
+										</div>
+									</div>
+								</form>
+			
+							</div>
+							
+						</div>
+					</div>
+			
+					<div class="inside-container">
+						<h3 class="heading_settingd">Contact Us</h3>
+
+						<p>
+							Guyana Agent:  STEMGuyana <br/>
+							Sports Hall, Homestretch Avenue, Georgetown, Guyana <br/>
+							<a href="mailto:stemguyana@gmail.com" style="word-break: break-all;">stemguyana@gmail.com</a> <br/>
+							592-604-2037 [whatsapp only]<br/>
+						</p>
+					</div>
+				</div>
+						
+			</div>
+			 
+				 
+      
+
+    </div>
+</div>
+
+
+
+<style>
+	.back_image img {
+    width: 100% !important;
+	margin-top: -200px;
+	position: relative;
+	z-index: 40;
+}
+#login-name-input, #login-password-input, #login-phone-input{
+	display: none;
+}
+
+
+
+
+.first-section>div{
+	display: flex;
+flex-direction: column;
+gap: 22px;
+
+}
+
+
+
+.inside-container{
+	min-width: 300px;
+	max-width: 470px;
+}
+
+.first-section div .inside-container .row{
+    margin: unset;
+}
+
+@media (max-width: 390px) {
+	.first-section .col-sm-8{
+		padding-inline: 0;
+	}
+
+	.first-section .inside-container{
+		padding-inline: 15px;
+	}
+}
+
+@media (max-width: 340px) {
+	.first-section{
+		padding-inline: 0;
+	}
+}
+
+
+#loginbox{
+	width: 100%;
+}
+
+.first-section .inside-container:last-child h3{
+	margin-top: 0;
+}
+
+.panel{
+	margin-bottom: 0;
+}
+
+.navbar-toggle{
+	display: none;
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+  text-decoration: none;
+}
+
+</style>
+
+</body>
+</html>

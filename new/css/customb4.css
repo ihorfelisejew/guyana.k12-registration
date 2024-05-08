@@ -1,0 +1,41 @@
+.navbar-inverse {
+    background-color: #f79810;
+    border-color: #f79810;
+	padding:15px 0px;
+	background-image: none !important;
+}
+
+.btn-block{
+	background-color: #f79810;
+    border-color: #f79810;
+	
+	
+}
+
+
+.btn{
+	background-color: #f79810;
+    border-color: #f79810;
+	background-image: none !important;
+	color: #fff;
+}
+.btn-primary:focus, .btn-primary:hover {
+	background-color: #f79810;
+}
+
+a{
+	color: #f79810;
+}
+
+.panel-info>.panel-heading {
+    color: #fff;
+    background-color: #f79810;
+    border-color: #f6e6d0;
+	background-image: none !important;
+}
+
+.panel-default>.panel-heading{
+	background-color: #f79810;
+	background-image: none !important;
+	color: #fff;
+}
